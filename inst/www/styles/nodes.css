@@ -1,0 +1,13 @@
+/* Component: Blue outer border on nodes when hovered
+ * Description: This appears on all nodes.
+ */
+.node-hover-circle {
+    fill: rgb(99, 144, 155)
+}
+
+/* Component: Blue outer border on nodes when clicked
+ * Description: This appears on all nodes.
+ */
+.node-click-circle {
+    fill: rgb(130, 192, 207)
+}

@@ -1,0 +1,16 @@
+citHeader("To cite etam4269 in publications use:")
+
+citEntry(
+  entry    = "Article",
+  title    = ,
+  author   = ,
+  journal  = ,
+  year     = ,
+  volume   = ,
+  number   = ,
+  pages    = ,
+  url      = ,
+  textVersion = paste(
+
+  )
+)

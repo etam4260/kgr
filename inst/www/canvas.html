@@ -1,0 +1,81 @@
+
+<!DOCTYPE html>
+
+<link rel="stylesheet" href="./styles/kg_builder.css">
+<link rel="stylesheet" href="./styles/edges.css">
+<link rel="stylesheet" href="./styles/node_options.css">
+<link rel="stylesheet" href="./styles/nodes.css">
+
+<html>
+    <head>
+        <title>kgr</title>
+        <link rel="icon" type="image/x-icon" href="./nodes.ico">
+    </head>
+
+    <body>
+        <div class = canvas>
+            <svg width = 621 height = 735 class = "svg_image">
+            
+                <g id = 0>
+                    <circle cx="40" cy="40" r="40" fill="white" stroke = "grey" stroke-dasharray="5,5" stroke-width = "1" display = none class = "delete-node-semi-circle"/>
+                    <circle cx="40" cy="40" r="30" fill="white" stroke = "grey" stroke-dasharray="5,5" stroke-width = "1" display = none class = "delete-links-semi-circle"/>
+                    
+                    <circle cx="40" cy="40" r="25" opacity = "0" class = "node-click-circle"/>
+                    
+                    <circle cx="40" cy="40" r="25" opacity = "0" class = "node-hover-circle"/>
+                    
+                    <circle cx="40" cy="40" r="20" fill="white" stroke = "grey" stroke-dasharray="5,5" stroke-width = "1" class = "node"/>
+                    <text x="20" y="45" font-family="Verdana" font-size="12" fill="black" class = "nodetext"> Node 1</text>
+
+                    <line x1="40" y1="60" x2="40" y2="150" stroke-width="1" stroke-dasharray="5,5" stroke="black" class = "edge"/>
+                </g>
+
+
+                <g id = 1>
+                    <circle cx="60" cy="60" r="40" fill="white" stroke = "grey" stroke-dasharray="5,5" stroke-width = "1" display = none class = "delete-node-semi-circle"/>
+                    <circle cx="60" cy="60" r="30" fill="white" stroke = "grey" stroke-dasharray="5,5" stroke-width = "1" display = none class = "delete-links-semi-circle"/>
+                    
+                    <circle cx="60" cy="60" r="25" opacity = "0" class = "node-click-circle"/>
+                    
+                    <circle cx="60" cy="60" r="25" opacity = "0" class = "node-hover-circle"/>
+                    
+                    <circle cx="60" cy="60" r="20" fill="white" stroke = "grey" stroke-dasharray="5,5" stroke-width = "1" class = "node"/>
+                    <text x="40" y="65" font-family="Verdana" font-size="12" fill="black" class = "nodetext"> Node 2</text>
+
+                    <line x1="60" y1="80" x2="60" y2="170" stroke-width="1" stroke-dasharray="5,5" stroke="black" class = "edge"/>
+                </g>
+
+
+                <g id = 2>
+                    <circle cx="80" cy="80" r="40" fill="white" stroke = "grey" stroke-dasharray="5,5" stroke-width = "1" display = none class = "delete-node-semi-circle"/>
+                    <circle cx="80" cy="80" r="30" fill="white" stroke = "grey" stroke-dasharray="5,5" stroke-width = "1" display = none class = "delete-links-semi-circle"/>
+                    
+                    <circle cx="80" cy="80" r="25"  opacity = "0" class = "node-click-circle"/>
+                    
+                    <circle cx="80" cy="80" r="25"  opacity = "0" class = "node-hover-circle"/>
+                    
+                    <circle cx="80" cy="80" r="20" fill="white" stroke = "grey" stroke-dasharray="5,5" stroke-width = "1" class = "node"/>
+                    <text x="60" y="85" font-family="Verdana" font-size="12" fill="black" class = "nodetext"> Node 3</text>
+
+                    <line x1="80" y1="100" x2="80" y2="190" stroke-width="1" stroke-dasharray="5,5" stroke="black" class = "edge"/>
+                </g>
+
+
+                <rect x="10" y = "10" width="100" height="40" rx="10" class="add_node"/>
+                <text x="35" y = "35" class= "add_node_text">+ Node</text>
+
+                <rect x="120" y = "10" width="40" height="40" rx="10" class="delete"/>
+                <image href = "trash-can-10417.svg" height = "20" width = "20" x = 130 y = "20" class="delete"></image>
+
+            </svg>
+        </div>
+    </body>
+
+</html>
+
+
+<script src="./script/node.js"></script>
+<script src="./script/edge.js"></script>
+<script src="./script/buttons.js"></script>
+<script src="./script/canvas.js"></script>
+<script src="./script/client.js"></script>

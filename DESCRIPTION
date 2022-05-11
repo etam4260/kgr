@@ -1,0 +1,18 @@
+Package: kgr
+Title: kgr: Interactive property and knowledge graph builder and widget for R.
+Version: 0.1.0.9000
+Authors@R: 
+    person("Emmet", "Tam", , "emmet_tam@yahoo.com", role = c("aut", "cre"))
+Description: With the rising popularity of knowledge graph tools, kgr provides 
+  a means for users to easily build and maintain these data structures directly
+  in R.
+License: GPL (>= 2)
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.2
+Suggests: 
+    knitr,
+    rmarkdown,
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
+VignetteBuilder: knitr

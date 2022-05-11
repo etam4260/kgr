@@ -1,0 +1,23 @@
+/* Component: The entire HTML page as 
+ * well as the  body of the html page
+ * Description: Makes sure html page 
+ * takes up the full page.
+ */
+html, body {
+    margin:0;
+    padding:0;
+}
+
+/* Component: div element
+ * Description: elements inside can be draggable.
+ */
+.canvas {       
+    z-index: 10;
+}
+
+/* Component: svg element
+ * Description: area where svg images are drawn
+ */
+.svg_image {
+    background-color: rgb(238, 238, 238);
+}
