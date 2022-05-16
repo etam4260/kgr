@@ -28,14 +28,36 @@ kg_builder <- function() {
                    list(
                      onWSOpen = function(ws) {
                        # The ws object is a WebSocket object
+
                        cat("Server connection opened.\n")
 
+                       # Messages should be sent and returned in a
+                       # json format. Need to maintain consistency between
+                       # R and external app.
                        ws$onMessage(function(binary, message) {
                          cat("Server received message:", message, "\n")
                          ws$send(message)
-                         # If message signals to end the server, end
-                         # close the connection and send back data
+                          x <<- 2
+
+                         # Depending on the message, we want to do some action
+                         # Node was added on the application, update
+                         # the R environment
+                         if (message == "1") {
+
+                         # Delete operation, make sure to delete the right
+                         # object.
+                         } else if (message == "2") {
+
+                         # New edge was added, make sure to update...
+                         } else if (message == "3") {
+
+                         # New properties were added to either node or edge.
+                         } else if (message == "4") {
+
+                         }
+
                        })
+
                        ws$onClose(function() {
                          cat("Server connection closed.\n")
                        })

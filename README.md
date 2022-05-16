@@ -9,17 +9,19 @@
 has not yet been a stable, usable release suitable for the
 public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
 [![Lifecycle:
-maturing](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 [![devel
 version](https://img.shields.io/badge/devel%20version-0.1.0.9000-yellow)]()
 
 <!-- badges: end -->
 
+## Introduction
+
 The goal of kgr is to provide an interface for building and maintaining
 knowledge graphs in R. Knowledge graphs are powerful data structures for
-representing relationships among entities. Currently R and RStudio lack
-the tools necessary for working with knowledge graphs: this is where kgr
-will shine.
+representing relationships among entities Currently R and RStudio lack
+the tools necessary for working with knowledge graphs effectively: this
+is where kgr will shine.
 
 kgr provides a GUI for creating knowledge graphs directly in RStudio and
 allows users to directly link to their data. It also allows users to
@@ -56,9 +58,7 @@ results with information from a wide variety of sources.
 Contemporary information systems in various sectors currently use DBMS
 or relational databases as part of their business systems.
 
-Relational databases have their place in the world of data management,
-but has led to a growing problem of data silos Furthermore, operations
-on relational databases are expensive when compared to graph databases
+Operations on relational databases are expensive when compared to graphs
 because of expensive join operations which are memory and
 computationally heavy.
 

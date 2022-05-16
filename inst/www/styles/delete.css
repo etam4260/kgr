@@ -1,0 +1,11 @@
+
+/* Component: Delete button on the front build screen
+ * The delete button is white with grey border.
+ * Deletes any 'component' on the screen, including nodes and edges.
+ */
+.delete {
+    fill:rgb(255, 255, 255);
+    stroke: rgb(209, 209, 209) ;
+    stroke-width: 1;
+    cursor: pointer;
+}

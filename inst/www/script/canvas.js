@@ -5,7 +5,7 @@ var svg_image = document.querySelector(".svg_image")
 
 
 svg_image.setAttribute("width", document.documentElement.clientWidth)
-svg_image.setAttribute("height",  document.documentElement.clientHeight)
+svg_image.setAttribute("height",  document.documentElement.clientHeight * (4/5))
 
 // Is the node currently active
 var active = false;
@@ -23,7 +23,6 @@ var xOffset = new Array(num_nodes).fill(0);
 var yOffset = new Array(num_nodes).fill(0);
 
 var index;
-var selected_item = null;
 
 /**
  * Listen to touchstart event
@@ -138,22 +137,39 @@ function setTranslate(xPos, yPos, el) {
 
 
 
-// Handler to close things when they are opened.
+
+
+
+
+
 window.addEventListener("click", function(event) {
-    console.log(event.target.className.baseVal)
-    
-    // If base element... make sure to remove highlight
-    console.log(event.target.className.baseVal)
     if(event.target.className.baseVal != "node" && event.target.className.baseVal != "nodetext") {
         nodes = document.querySelectorAll("g")
- 
+
+
         nodes.forEach(element => { 
-            console.log(element)
-            console.log(element.querySelector(".node-click-circle"))
+            
             element.querySelector(".node-click-circle").style.opacity = "0"
             element.querySelector(".delete-node-semi-circle").style.display = "none"
             element.querySelector(".delete-links-semi-circle").style.display = "none"
             
         })
+    }
+});
+
+
+window.addEventListener('resize', function(event) {
+   
+    if(!editor_open) {
+        
+        node_editor.style.height = document.documentElement.clientHeight * (1/20) + "px"
+        svg_image.setAttribute("height",  document.documentElement.clientHeight * (19/20))
+        svg_image.setAttribute("width", window.innerWidth)
+    } else if(editor_open) {
+        
+        svg_image.setAttribute("width", window.innerWidth)
+        svg_image.setAttribute("height", window.innerHeight * (4/5))
+    
+        node_editor.style.height = document.documentElement.clientHeight * (1/5) + "px"
     }
 });

@@ -11,7 +11,7 @@ var num_nodes = 3
 
 var shellOpenIndex = -1;
 
-nodes.forEach( element => { 
+nodes.forEach(element => { 
     element.addEventListener('click', function handleClick(event) {
         event.preventDefault();
         
@@ -29,7 +29,6 @@ nodes.forEach( element => {
                 document.getElementById(shellOpenIndex).querySelector(".delete-links-semi-circle").style.display = "none"
                 document.getElementById(shellOpenIndex).querySelector(".delete-node-semi-circle").style.display = "none"
                 document.getElementById(shellOpenIndex).querySelector(".node-click-circle").style.opacity = "0"
-                shellOpenIndex = event.target.parentElement.id
             } 
 
             shellOpenIndex = event.target.parentElement.id
@@ -45,10 +44,8 @@ nodes.forEach( element => {
         event.preventDefault();
         
         var hover = event.target.parentElement.querySelector(".node-hover-circle")
-        console.log(hover)
+    
         hover.style.opacity = ".75"
-
-
     })
 
 })
@@ -133,19 +130,12 @@ clickcircles.forEach(element =>  {
 })
 
 
-
-/**
- * Send a message to the server.
- * @param  {String} message The message to send.
- * @return {Void}      
- */
- document.addEventListener("mouseover", function handle(event) {
+document.addEventListener("mouseover", function handle(event) {
     
     if(event.target.className.baseVal != "node-hover-circle" && event.target.className.baseVal != "nodetext" && event.target.className.baseVal != "node") {
         
         hovercircles.forEach(element => {
             element.style.opacity = 0
-           
         });
     }
 })

@@ -1,0 +1,62 @@
+/* Component: The entire HTML page as 
+ * well as the  body of the html page
+ * Description: Makes sure html page 
+ * takes up the full page.
+ */
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+/* Component: div element
+ * Description: elements inside can be draggable.
+ */
+.canvas {       
+    z-index: 10;
+    padding: 0;
+    margin: 0;
+}
+
+/* Component: svg element
+ * Description: area where svg images are drawn
+ */
+.svg_image {
+    background-color: rgb(238, 238, 238);
+    padding: 0;
+    margin: 0;
+}
+
+.node_editor {
+    padding: 0;
+    margin: 0;
+    
+    display: grid;
+    background-color: rgb(238, 238, 238);
+    width: 100%;
+    
+    grid-template-columns: auto auto auto auto;
+}
+
+.titles {
+    margin: 5%;
+    width: 85%;
+    cursor: pointer;
+}
+
+
+.entries {
+    margin: 5%;
+    width: 85%;
+}
+
+.exit_editor {
+    position: relative;
+    left: 75%;
+    top: 20%;
+    cursor: pointer;
+}
+
+.exit_editor:hover {
+    color: red;
+}
+

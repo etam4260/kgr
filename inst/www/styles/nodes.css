@@ -2,7 +2,8 @@
  * Description: This appears on all nodes.
  */
 .node-hover-circle {
-    fill: rgb(99, 144, 155)
+    fill: rgb(99, 144, 155);
+   
 }
 
 /* Component: Blue outer border on nodes when clicked
@@ -10,4 +11,21 @@
  */
 .node-click-circle {
     fill: rgb(130, 192, 207)
+   
+}
+
+.node-text  {
+    cursor: pointer;
+}
+
+.node {
+    cursor: pointer;
+}
+
+.delete-links-semi-circle {
+    cursor: pointer;
+}
+
+.delete-node-semi-circle {
+    cursor: pointer;
 }

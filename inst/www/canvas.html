@@ -1,9 +1,11 @@
 
 <!DOCTYPE html>
 
-<link rel="stylesheet" href="./styles/kg_builder.css">
+<link rel="stylesheet" href="./styles/canvas.css">
 <link rel="stylesheet" href="./styles/edges.css">
 <link rel="stylesheet" href="./styles/node_options.css">
+<link rel="stylesheet" href="./styles/add.css">
+<link rel="stylesheet" href="./styles/delete.css">
 <link rel="stylesheet" href="./styles/nodes.css">
 
 <html>
@@ -14,7 +16,7 @@
 
     <body>
         <div class = canvas>
-            <svg width = 621 height = 735 class = "svg_image">
+            <svg class = "svg_image">
             
                 <g id = 0>
                     <circle cx="40" cy="40" r="40" fill="white" stroke = "grey" stroke-dasharray="5,5" stroke-width = "1" display = none class = "delete-node-semi-circle"/>
@@ -64,11 +66,47 @@
                 <rect x="10" y = "10" width="100" height="40" rx="10" class="add_node"/>
                 <text x="35" y = "35" class= "add_node_text">+ Node</text>
 
-                <rect x="120" y = "10" width="40" height="40" rx="10" class="delete"/>
-                <image href = "trash-can-10417.svg" height = "20" width = "20" x = 130 y = "20" class="delete"></image>
+                <rect x="120" y = "10" width="40" height="40" rx="10" class="delete" id="delete_button"/>
+                <image href = "trash-can-10417.svg" height = "20" width = "20" x = 130 y = "20" class="delete" id = "delete_image"></image>
 
             </svg>
         </div>
+        <div class = node_editor>
+            <div class = "grid-item">
+            </div>
+            <div class = "grid-item">
+            </div>
+            <div class = "grid-item">
+            </div>
+            <div class = "grid-item">
+                <text class = exit_editor>&#x2715</text>
+            </div>
+            <div class = "grid-item">
+                <text class = titles>Name:</text>
+            </div>
+            <div class = "grid-item">
+                <text class = titles>Properties:</text>
+            </div>
+            <div class = "grid-item">
+                <text class = titles>Edges:</text>
+            </div>
+            <div class = "grid-item">
+                <text class = titles>Query:</text>
+            </div>
+            <div class = "grid-item">
+                <input class = entries id = name> </input>
+            </div>
+            <div class = "grid-item">
+                <input class = entries id = properties> </input>
+            </div>
+            <div class = "grid-item">
+                <input class = entries id = edges> </input>
+            </div>
+            <div class = "grid-item">
+                <input class = entries id = query> </input>
+            </div>
+        </div>
+
     </body>
 
 </html>
@@ -76,6 +114,8 @@
 
 <script src="./script/node.js"></script>
 <script src="./script/edge.js"></script>
-<script src="./script/buttons.js"></script>
+<script src="./script/add.js"></script>
+<script src="./script/delete.js"></script>
 <script src="./script/canvas.js"></script>
 <script src="./script/client.js"></script>
+<script src="./script/editor.js"></script>
