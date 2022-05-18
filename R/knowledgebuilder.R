@@ -70,11 +70,10 @@ kg_builder <- function() {
   file.copy(from = app_path , to = dir, recursive = TRUE)
   system(paste("cp -R", app_path, dir, sep = " "))
 
-  message(app_path)
-  message(dir)
-
   # move entire application to temp folder and open it in the view. This will
   # start the server client interactions.
-  message(paste(dir, "/www/canvas.html", sep = ""))
   rstudioapi::viewer(paste(dir, "/www/canvas.html", sep = ""))
+
+  # Make sure that when this function is exited
+  on.exit(httpuv::stopServer(s), add = TRUE)
 }

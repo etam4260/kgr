@@ -19,57 +19,51 @@ knitr::opts_chunk$set(
 [![Project Status: WIP – Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 [![devel version](https://img.shields.io/badge/devel%20version-0.1.0.9000-yellow)]()
-
 <!-- badges: end -->
 
 ## Introduction
 
 The goal of kgr is to provide an interface for building and maintaining 
 knowledge graphs in R. Knowledge graphs are powerful data structures for 
-representing relationships among entities Currently R and RStudio lack the 
-tools necessary for working with knowledge graphs effectively: 
-this is where kgr will shine.
+representing relationships among entities. Currently, R lack the 
+tools necessary for working with knowledge graphs effectively in an intuitive
+manner.
 
 kgr provides a GUI for creating knowledge graphs directly in RStudio and allows 
-users to directly link to their data. It also allows users to easily 
-define and store their data frames and tibbles in a graph like structures. 
+users to directly link to data together. It also allows users to easily 
+define and store their data frames and tibbles in graph like structures. 
 
 Users are able to export their knowledge graphs to tools such as neo4j or 
 save it directly into their local environment for future use. This tool also 
 provides access to common graph algorithms and graph munging tools.
-
-kgr provides support for Cypher and SPARQL query languages.
 
 ## The Growing Trend of Knowledge Graphs
 
 Knowledge graphs have gained a lot of attention 
 in the field of artificial intelligence and natural language processing.
 Harvesting knowledge from large amounts of data relies on technology which
-can interpret relationships among entities efficiently. the ability to embed 
+can interpret relationships among entities efficiently (). The ability to embed 
 knowledge is important for knowledge representation. The rising popularity 
 of knowledge graphs are due to their high compatible with deep learning 
-methods which have led to breakthrough technologies in many fields.
+methods which have led to breakthrough technologies in many fields ().
 
 According to Noy et al, they are critical to many enterprises and provide 
-structured data and knowledge that drives products and make them smarter.
+structured data and knowledge that drives products and make them smarter ().
 
 ## Knowledge Graphs versus Relational Databases
 
 Knowledge graphs are used by Google to enhance its search engine's results with
-information from a wide variety of sources. 
+information from a wide variety of sources. Furthermore, contemporary 
+information systems in various sectors currently use DBMS or relational 
+databases as part of their business systems. Although relational databases
+are deeply embedded into contemporary technologies, operations 
+are expensive when compared to graphs due to expensive join operations ().
 
-Contemporary information systems in various sectors currently use 
-DBMS or relational databases as part of their business systems. 
-
-Operations on relational databases are expensive when compared to graphs because
-of expensive join operations which are memory and computationally heavy.
-
-Graph databases, however, utilize the connection of nodes and relationships 
-in a connected graph, making it simple to build models which closely follow a
-problem domain. This allows a user to query and map data from many perspectives. 
-The incorporation of relationships into the data structure allows for very fast
-query times. Furthermore, graphs provide more flexibility and are not bounded 
-by strict table or column layouts.
+Graph databases, on the other hand, utilize the connection of nodes and 
+relationships in a unified manner, making it simple to build models 
+which closely follow a problem domain. This allows a user to query and
+map data from many perspectives as graphs provide more flexibility and are not 
+bounded by strict table or column layouts (). 
 
 ## Installation
 

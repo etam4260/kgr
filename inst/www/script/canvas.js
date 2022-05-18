@@ -5,7 +5,7 @@ var svg_image = document.querySelector(".svg_image")
 
 
 svg_image.setAttribute("width", document.documentElement.clientWidth)
-svg_image.setAttribute("height",  document.documentElement.clientHeight * (4/5))
+svg_image.setAttribute("height",  document.documentElement.clientHeight * (19/20))
 
 // Is the node currently active
 var active = false;

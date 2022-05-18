@@ -1,9 +1,9 @@
 var node_editor = document.querySelector(".node_editor")
 var exit_editor = document.querySelector(".exit_editor")
 
-var editor_open = true
+var editor_open = false
 
-node_editor.style.height = document.documentElement.clientHeight * (1/5) + "px"
+node_editor.style.height = document.documentElement.clientHeight * (1/20) + "px"
 
 
 exit_editor.addEventListener("click", function handleClick(event) {
