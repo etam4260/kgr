@@ -4,8 +4,8 @@ var container = document.querySelector(".canvas");
 var svg_image = document.querySelector(".svg_image")
 
 
-svg_image.setAttribute("width", document.documentElement.clientWidth)
-svg_image.setAttribute("height",  document.documentElement.clientHeight * (19/20))
+// svg_image.setAttribute("width", document.documentElement.clientWidth)
+// svg_image.setAttribute("height",  document.documentElement.clientHeight * (19/20))
 
 // Is the node currently active
 var active = false;
@@ -24,23 +24,45 @@ var yOffset = new Array(num_nodes).fill(0);
 
 var index;
 
+
+
+
 /**
- * Listen to touchstart event
- *
- * @type {container} - the target of the event
- * @listens document#touchstart- the namespace and name of the event
+ * @name initializeSizeOfCanvas
+ * @description When user clicks the add node button, make sure to append a new node
+ *   to the document alongside with its associated components.
+ * @param add_node The button to add effects to
  */
-container.addEventListener("touchstart", dragStart, false);
+function initializeSizeOfCanvas(svg_image) {
+    svg_image.setAttribute("width", document.documentElement.clientWidth)
+    svg_image.setAttribute("height",  document.documentElement.clientHeight * (19/20))
+}
 
-container.addEventListener("touchend", dragEnd, false);
+function initializeDragOfCanvas(container) {
+    /**
+     * @description Listen to touchstart event
+     * @type {container} - the target of the event
+     * @listens document#touchstart- the namespace and name of the event
+     */
 
-container.addEventListener("touchmove", drag, false);
 
-container.addEventListener("mousedown", dragStart, false);
+    container.addEventListener("touchstart", dragStart, false);
 
-container.addEventListener("mouseup", dragEnd, false);
+    container.addEventListener("touchend", dragEnd, false);
 
-container.addEventListener("mousemove", drag, false);
+    container.addEventListener("touchmove", drag, false);
+
+    container.addEventListener("mousedown", dragStart, false);
+
+    container.addEventListener("mouseup", dragEnd, false);
+
+    container.addEventListener("mousemove", drag, false);
+
+
+
+
+}
+
 
 
 
@@ -80,6 +102,7 @@ function dragStart(e) {
         initialY[index] = e.clientY - yOffset[index];
     }
 }
+
 
 
 /**
@@ -141,7 +164,6 @@ function setTranslate(xPos, yPos, el) {
 
 
 
-
 window.addEventListener("click", function(event) {
     if(event.target.className.baseVal != "node" && event.target.className.baseVal != "nodetext") {
         nodes = document.querySelectorAll("g")
@@ -158,13 +180,15 @@ window.addEventListener("click", function(event) {
 });
 
 
+
 window.addEventListener('resize', function(event) {
    
     if(!editor_open) {
-        
+    
         node_editor.style.height = document.documentElement.clientHeight * (1/20) + "px"
         svg_image.setAttribute("height",  document.documentElement.clientHeight * (19/20))
         svg_image.setAttribute("width", window.innerWidth)
+    
     } else if(editor_open) {
         
         svg_image.setAttribute("width", window.innerWidth)
