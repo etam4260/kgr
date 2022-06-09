@@ -3,11 +3,10 @@ var dragItem = document.querySelector(".node")
 var container = document.querySelector(".canvas");
 var svg_image = document.querySelector(".svg_image")
 
-
 // svg_image.setAttribute("width", document.documentElement.clientWidth)
 // svg_image.setAttribute("height",  document.documentElement.clientHeight * (19/20))
 
-// Is the node currently active
+// Is the node currently active?
 var active = false;
 
 // Current X and Y position of node being dragged.
@@ -26,27 +25,34 @@ var index;
 
 
 
-
 /**
  * @name initializeSizeOfCanvas
- * @description When user clicks the add node button, make sure to append a new node
- *   to the document alongside with its associated components.
- * @param add_node The button to add effects to
+ * @description Initialize the size of the canvas on which the nodes will
+ *   be moving on.
+ * @param svg_image The svg object inside the container(canvas).
  */
 function initializeSizeOfCanvas(svg_image) {
     svg_image.setAttribute("width", document.documentElement.clientWidth)
     svg_image.setAttribute("height",  document.documentElement.clientHeight * (19/20))
 }
 
+
+/**
+ * @name initializeDragOfCanvas
+ * @description Initialize the dragging behavior used by the canvas. 
+ * @param container The html div element containing the svg object.
+ */
 function initializeDragOfCanvas(container) {
+    
     /**
      * @description Listen to touchstart event
      * @type {container} - the target of the event
-     * @listens document#touchstart- the namespace and name of the event
+     * @listens container#dragStart- the namespace and name of the event
      */
-
-
     container.addEventListener("touchstart", dragStart, false);
+
+
+
 
     container.addEventListener("touchend", dragEnd, false);
 
@@ -57,20 +63,14 @@ function initializeDragOfCanvas(container) {
     container.addEventListener("mouseup", dragEnd, false);
 
     container.addEventListener("mousemove", drag, false);
-
-
-
-
 }
 
 
 
-
-
 /**
- * Send a message to the server.
- * @param  {String} message The message to send.
- * @return {Void}      
+ * @name dragEnd
+ * @description Listens to the drag ending event of picked up node.
+ * @param {event} e The event target.
  */
 function dragEnd(e) {
     initialX[index] = currentX;
@@ -80,10 +80,11 @@ function dragEnd(e) {
     dragItem.style.cursor = "grab"
 }
 
+
 /**
- * Send a message to the server.
- * @param  {String} event The event
- * @return {Void}      
+ * @name dragEnd 
+ * @description Listens to the drag starting event of picked up node.
+ * @param {event} e The event target.   
  */
 function dragStart(e) {
    if(e.target.className.baseVal == "node" || e.target.className.baseVal == "nodetext") {
@@ -104,11 +105,10 @@ function dragStart(e) {
 }
 
 
-
 /**
- * Send a message to the server.
- * @param  {String} message The message to send.
- * @return {Void}      
+ * @name drag
+ * @description Listens the ongoing drag event of picked up node.
+ * @param {event} e The event target.   
  */
 function drag(e) {
     if (active) {
@@ -132,9 +132,11 @@ function drag(e) {
 
 
 /**
- * Send a message to the server.
- * @param  {String} message The message to send.
- * @return {Void}      
+ * @name setTranslate
+ * @description Tranlates the node across the canvas into the new position.
+ * @param {Number} xPos The current X position of the object.
+ * @param {Number} yPos The current Y position of the object.
+ * @param {Node} el The current object to translate.
  */
 function setTranslate(xPos, yPos, el) {
   el.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
@@ -159,41 +161,4 @@ function setTranslate(xPos, yPos, el) {
 }
 
 
-
-
-
-
-
-window.addEventListener("click", function(event) {
-    if(event.target.className.baseVal != "node" && event.target.className.baseVal != "nodetext") {
-        nodes = document.querySelectorAll("g")
-
-
-        nodes.forEach(element => { 
-            
-            element.querySelector(".node-click-circle").style.opacity = "0"
-            element.querySelector(".delete-node-semi-circle").style.display = "none"
-            element.querySelector(".delete-links-semi-circle").style.display = "none"
-            
-        })
-    }
-});
-
-
-
-window.addEventListener('resize', function(event) {
-   
-    if(!editor_open) {
-    
-        node_editor.style.height = document.documentElement.clientHeight * (1/20) + "px"
-        svg_image.setAttribute("height",  document.documentElement.clientHeight * (19/20))
-        svg_image.setAttribute("width", window.innerWidth)
-    
-    } else if(editor_open) {
-        
-        svg_image.setAttribute("width", window.innerWidth)
-        svg_image.setAttribute("height", window.innerHeight * (4/5))
-    
-        node_editor.style.height = document.documentElement.clientHeight * (1/5) + "px"
-    }
-});
+export {initializeSizeOfCanvas, initializeDragOfCanvas}

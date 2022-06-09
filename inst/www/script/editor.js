@@ -9,10 +9,9 @@ node_editor.style.height = document.documentElement.clientHeight * (1/20) + "px"
 /**
  * @name initializeEditor
  * @description create editor in the document with specified size 
- * @param The button to apply listener to close the editor.
+ * @param document The document to add the editor to.
  */
 function initializeEditor(document) {
-    
     var node_editor = document.querySelector(".node_editor")
     node_editor.style.height = document.documentElement.clientHeight * (1/20) + "px"
 
@@ -21,9 +20,8 @@ function initializeEditor(document) {
 
 
 
-
 /**
- * @name exitNodeEditorListener
+ * @name exitNodeEditor
  * @description when the exit editor button is clicked, make sure 
  *   to close the editor.
  * @param exit_editor The button to apply listener to close the editor.

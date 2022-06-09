@@ -47,9 +47,10 @@ tibbles.
 |  | |
 |-----------|-----------|
 | kg_builder | |
-| kg | |
-| | |
-| | |
+| kg_plot | |
+|  | |
+| | 
+
 
 * KGmunge
 - Knowledge Munging
