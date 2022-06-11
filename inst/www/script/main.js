@@ -46,6 +46,7 @@ canvas.initializeSizeOfCanvas(svg_image)
 canvas.initializeDragOfCanvas(container)
 
 editor.initializeEditor(document)
+editor.exitNodeEditor(exit_editor, editor_open)
 
 window_handler.handleWindowClicks(all_nodes)
 window_handler.handleWindowResize(svg_image, node_editor)
@@ -53,15 +54,15 @@ window_handler.handleWindowResize(svg_image, node_editor)
 document_handler.addHoverEffectForAddAndDelete(document)
 document_handler.clearEffectsOnDocumentMouseoverListener(document)
 
-
 websocket.initializeSocket(ws)
 
-var add_node = document.querySelector(".add_node")
-var add_node_text = document.querySelector(".add_node_text")
+var add_node_button_html = document.querySelector(".add_node")
+var add_node_text_html = document.querySelector(".add_node_text")
 
-add_button.addNewNodeListener(add_node)
-add_button.addNewNodeTextListener(add_node_text)
-
-
+add_button.addNewNodeListener(add_node_button_html)
+add_button.addNewNodeTextListener(add_node_text_html)
 
 
+var delete_button_html = document.querySelectorAll(".delete")
+
+delete_button.addDeleteButtonClickEvent(delete_button_html)

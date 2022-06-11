@@ -1,4 +1,13 @@
 /**
+ * document_handler.js
+ * 
+ * File contains functions related to handling document related events. 
+ * 
+ */
+
+
+
+/**
  * @name clearEffectsOnDocumentMouseover
  * @description When user is hovering over the main document
  *   make sure the hovering effect on each node is 
@@ -20,7 +29,6 @@ function clearEffectsOnDocumentMouseoverListener(document) {
         }
     })
 }
-
 
 /**
  * @name addHoverEffectForAddAndDelete

@@ -19,14 +19,13 @@ function initializeEditor(document) {
 }
 
 
-
 /**
  * @name exitNodeEditor
  * @description when the exit editor button is clicked, make sure 
  *   to close the editor.
  * @param exit_editor The button to apply listener to close the editor.
  */
-function exitNodeEditor(exit_editor) {
+function exitNodeEditor(exit_editor, editor_open) {
     exit_editor.addEventListener("click", function handleClick(event) {
         node_editor_items = node_editor.querySelectorAll(".titles")
         
