@@ -13,11 +13,11 @@ knitr::opts_chunk$set(
 )
 ```
 
-# kgr <img src='man/figures/logo.png' align="right" width="139"/>
 
 <!-- badges: start -->
 [![Project Status: WIP – Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+[![CodeFactor](https://www.codefactor.io/repository/github/etam4260/kgr/badge/main)](https://www.codefactor.io/repository/github/etam4260/kgr/overview/main)
 [![devel version](https://img.shields.io/badge/devel%20version-0.1.0.9000-yellow)]()
 <!-- badges: end -->
 
