@@ -1,12 +1,12 @@
-import * as document_handler from './document_handler.js'
-import * as editor from './editor.js'
-import * as node from './node.js'
-import * as edge from './edge.js'
-import * as canvas from './canvas.js'
-import * as add_button from './add.js'
-import * as delete_button from './delete.js'
-import * as websocket from './client.js'
-import * as window_handler from './window_handler.js'
+import * as document_listeners from './document_listeners.js'
+import * as editor_listeners from './editor_listeners'
+import * as node_listeners from './node_listeners.js'
+import * as edge_listeners from './edge_listeners.js'
+import * as canvas_listeners from './canvas_listeners.js'
+import * as add_button_listeners from './add_button_listeners.js'
+import * as delete_button_listeners from './delete_button_listeners.js'
+import * as websocket_listeners from './websocket_listeners.js'
+import * as window_listeners from './window_listeners.js'
 
 
 var dragItem = document.querySelector(".node")
@@ -66,3 +66,8 @@ add_button.addNewNodeTextListener(add_node_text_html)
 var delete_button_html = document.querySelectorAll(".delete")
 
 delete_button.addDeleteButtonClickEvent(delete_button_html)
+
+
+
+node.selectNodeListener()
+node.selectNodeTextListener()

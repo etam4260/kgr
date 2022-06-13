@@ -1,26 +1,34 @@
+import * as node_listeners from './node_listeners.js'
+
 var add_node = document.querySelector(".add_node")
 var add_node_text = document.querySelector(".add_node_text")
 
 
 /**
  * @name addNewNodeListener
- * @description When user clicks the add node button, make sure to append a new node
- *   to the document alongside with its associated components.
- * @param add_node The button to add effects to
+ * @description When user clicks the add node button, make sure 
+ *   to append a new node to the document alongside with its 
+ *   associated components.
+ * @param addNode The add button to apply effects to.
+ * @param svgImage The svg object where the add node.
+ * @param numNodes The current number of nodes on the canvas.
+ *   button is located.
  */
-function addNewNodeListener(add_node) {
-    add_node.addEventListener("click", function handleClick(event) {
+function addNewNodeListener(addNode, svgImage, numNodes) {
+    
+    addNode.addEventListener("click", function handleClick(event) {
+        
         // Make new node ...
-        var node_screen = document.querySelector(".svg_image")
+        
         initialX.push(0)
         initialY.push(0)
     
         yOffset.push(0)
         xOffset.push(0)
     
-        new_node =     
+        newNode =     
         `
-        <g id = ${num_nodes}>
+        <g id = ${numNodes}>
             <circle cx="60" cy="60" r="40" fill="white" stroke = "grey" stroke-dasharray="5,5" stroke-width = "1" display = none class = "delete-node-semi-circle"/>
             <circle cx="60" cy="60" r="30" fill="white" stroke = "grey" stroke-dasharray="5,5" stroke-width = "1" display = none class = "delete-links-semi-circle"/>
             
@@ -35,18 +43,25 @@ function addNewNodeListener(add_node) {
         </g>
         `
         
-        node_screen.insertAdjacentHTML("afterbegin", new_node)
+        svgImage.insertAdjacentHTML("afterbegin", newNode)
     
-        num_nodes += 1
+        numNodes += 1
     
-     
-        add_node_event_listeners(node_screen.getElementById(num_nodes - 1).querySelector(".node"))
-        add_node_text_event_listener(node_screen.getElementById(num_nodes - 1).querySelector(".nodetext"))
-    
-        add_hover_circle(node_screen.getElementById(num_nodes - 1).querySelector(".node-hover-circle"))
-        add_click_circle(node_screen.getElementById(num_nodes - 1).querySelector(".node-click-circle"))
-        add_hover_out(node_screen.getElementById(num_nodes - 1).querySelector(".node-hover-circle"))
+        node_listeners.selectNodeListener(svgImage.getElementById(numNodes - 1).querySelector(".node"))
+        
+        node_listeners.selectNodeTextListener(svgImage.getElementById(numNodes - 1).querySelector(".nodetext"))
+        
+        node_listeners.deleteLinksOnNodeButtonListener(svgImage.getElementById(numNodes - 1).querySelector("delete-node-semi-circle"))
+
+        node_listeners.deleteNodeButtonListener(svgImage.getElementById(numNodes - 1).querySelector(".delete-links-semi-circle"))
+
+        node_listeners.addHoverCircleEventListener(svgImage.getElementById(numNodes - 1).querySelector(".node-hover-circle"))
+
+        node_listeners.addClickCircleEventListener(svgImage.getElementById(numNodes - 1).querySelector(".node-click-circle"))
+
     })
+
+    return(numNodes)
 }
 
 
@@ -54,14 +69,19 @@ function addNewNodeListener(add_node) {
  * @name addNewNodeTextListener
  * @description When user clicks the add node button text,
  *   make sure to append a new node to the document alongside
- *   with its associated components. effectively removed.
- * @param document The text in a button to add effects to.
+ *   with its associated components.
+ * @param addNodeText The text in the add node to apply listener to.
+ * @param svgImage The svg object where the add node button is located.
+ * @param numNodes The current number of nodes on the canvas.
+ *   button is located.
  */
-function addNewNodeTextListener(add_node_text) {
+function addNewNodeTextListener(addNodeText, svgImage, numNodes) {
 
-    add_node_text.addEventListener("click", function handleClick(event) {
+    addNodeText.addEventListener("click", function handleClick(event) {
+        
         // Make new node ...
-        var node_screen = document.querySelector(".svg_image")
+        //var node_screen = document.querySelector(".svg_image")
+        
         initialX.push(0)
         initialY.push(0)
 
@@ -70,7 +90,7 @@ function addNewNodeTextListener(add_node_text) {
 
         new_node =     
         `
-        <g id = ${num_nodes}>
+        <g id = ${numNodes}>
             <circle cx="60" cy="60" r="40" fill="white" stroke = "grey" stroke-dasharray="5,5" stroke-width = "1" display = none class = "delete-node-semi-circle"/>
             <circle cx="60" cy="60" r="30" fill="white" stroke = "grey" stroke-dasharray="5,5" stroke-width = "1" display = none class = "delete-links-semi-circle"/>
             
@@ -85,11 +105,12 @@ function addNewNodeTextListener(add_node_text) {
         </g>
         `
         
-        node_screen.insertAdjacentHTML("afterbegin", new_node)
+        svgImage.insertAdjacentHTML("afterbegin", newNode)
 
         num_nodes += 1
     })
 }
+
 
 export {addNewNodeListener,
         addNewNodeTextListener}

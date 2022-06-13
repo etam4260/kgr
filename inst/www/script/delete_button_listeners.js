@@ -1,14 +1,16 @@
-var delete_ = document.querySelectorAll(".delete")
+var delete_button = document.querySelectorAll(".delete")
 
 /**
  * @name addDeleteButtonClickEvent
- * @description When user is hovering over the main document
- *   make sure the hovering effect on each node is 
- *   effectively removed.
- * @param delete_ The document to apply effects to.
+ * @description Add event listener for the delete button located at the 
+ *   top of the canvas. This will delete any currently select node or
+ *   edge in the canvas.
+ * @param deleteNodeButton The delete button to apply event listener to.
  */
-function addDeleteButtonClickEvent(delete_) {
-    delete_.forEach(element =>  {
+function addDeleteButtonClickEvent(deleteNodeButton, shellOpenIndex) {
+    
+    deleteNodeButton.forEach(element =>  {
+        
         element.addEventListener("click" , function handleHover(event) {
             
             /*
@@ -16,12 +18,13 @@ function addDeleteButtonClickEvent(delete_) {
              * currently open and delete it. If no element is open right now
              * then do nothing.
              */
+
             if (shellOpenIndex != -1) {
                     document.getElementById(shellOpenIndex).remove()
                     shellOpenIndex = -1
             }
 
-            // Allow user to do undo option... though
+            
         })
     })
 }

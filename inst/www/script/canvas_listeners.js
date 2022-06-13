@@ -1,6 +1,6 @@
 
 var dragItem = document.querySelector(".node")
-var container = document.querySelector(".canvas");
+var canvas = document.querySelector(".canvas");
 var svg_image = document.querySelector(".svg_image")
 
 // svg_image.setAttribute("width", document.documentElement.clientWidth)
@@ -26,56 +26,59 @@ var index;
 
 
 /**
- * @name initializeSizeOfCanvas
+ * @name initializeSizeOfSVG
  * @description Initialize the size of the canvas on which the nodes will
  *   be moving on.
- * @param svg_image The svg object inside the container(canvas).
+ * @param svgImage The svg object inside the canvas(canvas).
  */
-function initializeSizeOfCanvas(svg_image) {
-    svg_image.setAttribute("width", document.documentElement.clientWidth)
-    svg_image.setAttribute("height",  document.documentElement.clientHeight * (19/20))
+function initializeSizeOfSVG(svgImage) {
+    
+    svgImage.setAttribute("width", document.documentElement.clientWidth)
+    svgImage.setAttribute("height",  document.documentElement.clientHeight * (19/20))
+
 }
 
 
 /**
  * @name initializeDragOfCanvas
  * @description Initialize the dragging behavior used by the canvas. 
- * @param container The html div element containing the svg object.
+ * @param canvas The html div element containing the svg object.
  */
-function initializeDragOfCanvas(container) {
+function initializeDragOfCanvas(canvas) {
     
     /**
      * @description Listen to touchstart event
-     * @type {container} - the target of the event
-     * @listens container#dragStart- the namespace and name of the event
+     * @type {canvas} - the target of the event
+     * @listens canvas#touchstart- the namespace and name of the event
      */
-    container.addEventListener("touchstart", dragStart, false);
+    canvas.addEventListener("touchstart", dragStart, false);
+
+    canvas.addEventListener("touchend", dragEnd, false);
+
+    canvas.addEventListener("touchmove", drag, false);
 
 
+    canvas.addEventListener("mousedown", dragStart, false);
+
+    canvas.addEventListener("mouseup", dragEnd, false);
+
+    canvas.addEventListener("mousemove", drag, false);
 
 
-    container.addEventListener("touchend", dragEnd, false);
-
-    container.addEventListener("touchmove", drag, false);
-
-    container.addEventListener("mousedown", dragStart, false);
-
-    container.addEventListener("mouseup", dragEnd, false);
-
-    container.addEventListener("mousemove", drag, false);
-
-
+    
     /**
      * @name dragEnd
      * @description Listens to the drag ending event of picked up node.
      * @param {event} e The event target.
      */
     function dragEnd(e) {
+
         initialX[index] = currentX;
         initialY[index] = currentY;
 
         active = false;
         dragItem.style.cursor = "grab"
+
     }
 
 
@@ -85,20 +88,25 @@ function initializeDragOfCanvas(container) {
      * @param {event} e The event target.   
      */
     function dragStart(e) {
-    if(e.target.className.baseVal == "node" || e.target.className.baseVal == "nodetext") {
     
-        dragItem = e.target
-        active = true;
+        if(e.target.className.baseVal == "node" || e.target.className.baseVal == "nodetext") {
+    
+            dragItem = e.target
+            active = true;
 
-        index = e.target.parentElement.id
-    }
+            index = e.target.parentElement.id
+        }
     
         if (e.type === "touchstart") {
+            
             initialX[index] = e.touches[0].clientX - xOffset[index];
             initialY[index] = e.touches[0].clientY - yOffset[index];
+        
         }  else {
+        
             initialX[index] = e.clientX - xOffset[index];
             initialY[index] = e.clientY - yOffset[index];
+        
         }
     }
 
@@ -109,16 +117,21 @@ function initializeDragOfCanvas(container) {
      * @param {event} e The event target.   
      */
     function drag(e) {
+        
         if (active) {
     
             e.preventDefault()
         
             if (e.type === "touchmove") {
+                
                 currentX = e.touches[0].clientX - initialX[index];
                 currentY = e.touches[0].clientY - initialY[index];
+            
             } else {
+                
                 currentX = e.clientX - initialX[index];
                 currentY = e.clientY - initialY[index];
+            
             }
 
             xOffset[index] = currentX;
@@ -137,31 +150,35 @@ function initializeDragOfCanvas(container) {
      * @param {Node} el The current object to translate.
      */
     function setTranslate(xPos, yPos, el) {
+        
         el.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
         //Translate also the shell and text
 
-        var left = el.parentElement.querySelector(".delete-links-semi-circle")
-        var right = el.parentElement.querySelector(".delete-node-semi-circle")
-        var text = el.parentElement.querySelector(".nodetext")
+        // Get elements of the node and make sure to tranlate them too...
+        var deleteLinksOnNodeButton = el.parentElement.querySelector(".delete-links-semi-circle")
+        var deleteLinksOnNode = el.parentElement.querySelector(".delete-node-semi-circle")
+        var nodeText = el.parentElement.querySelector(".nodetext")
         var node = el.parentElement.querySelector(".node")
         var edge = el.parentElement.querySelector(".edge")
-        var hover_circle =  el.parentElement.querySelector(".node-hover-circle")
-        var hover_click  = el.parentElement.querySelector(".node-click-circle")
+        var hoverHighlightNodeCircle =  el.parentElement.querySelector(".node-hover-circle")
+        var clickHighlightNodeCircle  = el.parentElement.querySelector(".node-click-circle")
 
 
-        left.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
-        right.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";      
-        text.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
+        deleteLinksOnNodeButton.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
+        deleteLinksOnNode.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";      
+        
+
+        nodeText.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
         node.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
+        
+
         edge.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
-        hover_circle.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
-        hover_click.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
+        
+
+        hoverHighlightNodeCircle.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
+        clickHighlightNodeCircle .style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
     }
 }
 
 
-
-
-
-
-export {initializeSizeOfCanvas, initializeDragOfCanvas}
+export {initializeSizeOfSVG, initializeDragOfCanvas}

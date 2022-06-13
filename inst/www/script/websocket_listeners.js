@@ -28,22 +28,12 @@ function initializeSocket(ws) {
     ws.addEventListener('message', function (event) {
         /**
          * Depending on messaged received, operations are mapped 
-         * from R code to Javascript code.
-         * 
-         * add_node(name, ...)
-         * 
-         * delete_node(name, ...)
-         * 
-         * 
-         * ## Some common graph operations...
-         * 
-         * 
-         * 
-         *
+         * from R code to Javascript code and apply effects.
          */
-        console.log('Receiving... ', event.data);
-    });
 
+        console.log('Receiving... ', event.data);
+
+    });
 
     return(ws)
 }

@@ -25,7 +25,7 @@ knitr::opts_chunk$set(
 
 Graphs are used in a wide variety of applications within science,
 politic, and business for their intuitiveness and ability to model complex 
-relationships and problem. kgr is meant to provide an interface for building and 
+relationships and problems. kgr is meant to provide an interface for building and 
 maintaining property knowledge graphs in R. Graph based stuctures are not 
 new to R, but tools for interactively and programatically manipulating 
 graphs are seemingly so.
@@ -33,7 +33,7 @@ graphs are seemingly so.
 Knowledge graphs have gained a lot of attention in the field of artificial
 intelligence and natural language processing. Harvesting knowledge from large 
 amounts of data relies on technology which can interpret relationships among
-entities efficiently. The ability to embed knowledge is important for
+entities efficiently and the ability to embed knowledge is important for
 knowledge representation. 
 
 kgr provides a GUI for creating knowledge graphs directly in RStudio and 
