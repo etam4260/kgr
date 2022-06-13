@@ -1,4 +1,4 @@
 library(testthat)
-library(etam4269)
+library(kgr)
 
-test_check("etam4269")
+test_check("kgr")
