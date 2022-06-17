@@ -1,71 +1,65 @@
-// The nodes and the text within each node
-var nodes = document.querySelectorAll(".node")
-var nodeText = document.querySelectorAll(".nodetext")
-
-// The buttons which appear when nodes are clicked. One is used
-// for deleting the node while the other is for adding links
-var delete_links = document.querySelectorAll(".delete-links-semi-circle")
-var delete_node = document.querySelectorAll(".delete-node-semi-circle")
-
-
-// Circles to appear when user is hovering over a node and
-// or if the circle is clicked on.
-var hovercircles = document.querySelectorAll(".node-hover-circle")
-var clickcircles = document.querySelectorAll(".node-click-circle")
-
-// The number of nodes currently on the screen as well as 
-// if a node is currently selected.
-var num_nodes = 3
-var shell_Open_Index = -1;
-
-
 /**
  * @name selectNodeListener
  * @description When user clicks on a node on the screen, apply 
  *   a selection hover effect and open a options menu that surrounds
  *   the node.
- * @param nodes The nodes to apply listener effects to.
- * @param deleteLinksOnNodeButton The option button which appears after clicking a node which allows
- *   the user to delete links surrounding a node.
- * @param deleteNodeButton The option button which appears after clicking a node which allows
- *   the user to delete the node from the visualization.
- * @param clickHighlightNodeCircle The highlighted blue halo circle which appears after clicking a node. 
- *   This is the darker colored blue circle.
- * @param hoverHighlightNodeCircle The highlighted blue halo circle which appears when hovering over a node.
- *   This is the light colored blue circle.
+ * @param wholeNode The whole nodes to apply listener effects to.
  * @param shellOpenIndex The index of the node on the visualization 
  *   currently active (where the clickHighlightNode is active.)
  */
-function selectNodeListener(nodes, deleteLinksOnNodeButton,
-                            deleteNodeButton, clickHighlightNodeCircle,
-                            hoverHighlightNodeCircle, shellOpenIndex) {
+function selectNodeListener(wholeNode, 
+                            shellOpenIndex) {
     
-    nodes.forEach(element => { 
+
+    wholeNode.forEach(element => { 
         
         /*
          * On click make sure to open up the click circle and also 
          * the corresponding buttons that as options to be applied 
          * to the node.
          */
+
+        /* 
+        * @param deleteLinksOnNodeButton The option button which appears after 
+        *   clicking a node which allows
+        *   the user to delete links surrounding a node.
+        * @param deleteNodeButton The option button which appears after clicking a 
+        *   node which allows
+        *   the user to delete the node from the visualization.
+        * @param clickHighlightNodeCircle The highlighted blue halo circle which 
+        *   appears after clicking a node. 
+        *   This is the darker colored blue circle.
+        * @param hoverHighlightNodeCircle The highlighted blue halo circle which 
+        *   appears when hovering over a node.
+        *  This is the light colored blue circle.
+        */
+
+        deleteLinksOnNodeButton = element.querySelector(".delete-links-semi-circle")
+        deleteNodeButton = element.querySelector(".delete-node-semi-circle")
+        clickHighlightNodeCircle = element.querySelector(".node-click-circle")
+        hoverHighlightNodeCircle = element.querySelector(".node-hover-circle")
+
         element.addEventListener('click', function handleClick(event) {
             event.preventDefault();
             
-            //var delete_link = event.target.parentElement.querySelector(".delete-links-semi-circle")
-            //var delete_node = event.target.parentElement.querySelector(".delete-node-semi-circle")
-            //var highlight = event.target.parentElement.querySelector(".node-click-circle")
-
             if(getComputedStyle(deleteLinksOnNodeButton).display == "none") {
-                
+
                 deleteLinksOnNodeButton.style.display = "block"
                 deleteNodeButton.style.display = "block"
                 clickHighlightNodeCircle.style.opacity = ".75"
                 
                 // Grab the currently active circle and remove the click circle.
-                if(shellOpenIndex >= 0 && event.target.parentElement.id != shellOpenIndex) {
+                if(shellOpenIndex >= 0 && event.target.parentElement.id != 
+                    shellOpenIndex) {
                     
-                    document.getElementById(shellOpenIndex).querySelector(".delete-links-semi-circle").style.display = "none"
-                    document.getElementById(shellOpenIndex).querySelector(".delete-node-semi-circle").style.display = "none"
-                    document.getElementById(shellOpenIndex).querySelector(".node-click-circle").style.opacity = "0"
+                    document.getElementById(shellOpenIndex).querySelector(
+                        ".delete-links-semi-circle").style.display = "none"
+
+                    document.getElementById(shellOpenIndex).querySelector(
+                        ".delete-node-semi-circle").style.display = "none"
+
+                    document.getElementById(shellOpenIndex).querySelector(
+                        ".node-click-circle").style.opacity = "0"
                 
                 } 
 
@@ -86,9 +80,12 @@ function selectNodeListener(nodes, deleteLinksOnNodeButton,
          */
         element.addEventListener('mouseover', function handleClick(event) {
             event.preventDefault();
+
             // Each node has an associated node hover circle which is in the
             // same level as the node object itself. This is 
-            // var hover = event.target.parentElement.querySelector(".node-hover-circle")
+            // var hover = event.target.parentElement.querySelector(
+            //".node-hover-circle")
+
             hoverHighlightNodeCircle.style.opacity = ".75"
         })
     })
@@ -101,23 +98,44 @@ function selectNodeListener(nodes, deleteLinksOnNodeButton,
  * @description When user clicks on the text within the node on 
  *   the screen, apply a selection hover effect and open a
  *   options menu that surround the node.
- * @param nodeText The text on the nodes to apply listener effects to.
- * @param deleteLinksOnNodeButton The option button which appears after clicking a node which allows
- *   the user to delete links surrounding a node.
- * @param deleteNodeButton The option button which appears after clicking a node which allows
- *   the user to delete the node from the visualization.
- * @param clickHighlightNodeCircle The highlighted blue halo circle which appears after clicking a node. 
- *   This is the darker colored blue circle.
- * @param hoverHighlightNodeCircle The highlighted blue halo circle which appears when hovering over a node.
- *   This is the light colored blue circle.
+ * @param wholeNode The whole nodes to apply listener effects to.
  * @param shellOpenIndex The index of the node on the visualization 
  *   currently active (where the clickHighlightNode is active.)
  */
-function selectNodeTextListener(nodeText, deleteLinksOnNodeButton,
-                                deleteNodeButton, clickHighlightNodeCircle,
-                                hoverHighlightNodeCircle, shellOpenIndex) {
+function selectNodeTextListener(wholeNode, 
+                                shellOpenIndex) {
     
-    nodeText.forEach(element => { 
+    nodeText = wholeNode.querySelectorAll(".node-text")
+
+    nodeText.forEach(element => {
+
+
+        /* 
+        * @param deleteLinksOnNodeButton The option button which appears after 
+        *   clicking a node which allows
+        *   the user to delete links surrounding a node.
+        * @param deleteNodeButton The option button which appears after clicking a 
+        *   node which allows
+        *   the user to delete the node from the visualization.
+        * @param clickHighlightNodeCircle The highlighted blue halo circle which 
+        *   appears after clicking a node. 
+        *   This is the darker colored blue circle.
+        * @param hoverHighlightNodeCircle The highlighted blue halo circle which 
+        *   appears when hovering over a node.
+        *  This is the light colored blue circle.
+        */
+
+        deleteLinksOnNodeButton = element.parentElement.querySelector(
+            ".delete-links-semi-circle")
+
+        deleteNodeButton = element.parentElement.querySelector(
+            ".delete-node-semi-circle")
+
+        clickHighlightNodeCircle = element.parentElement.querySelector(
+            ".node-click-circle")
+
+        hoverHighlightNodeCircle = element.parentElement.querySelector(
+            ".node-hover-circle")
 
         /*
          * On click make sure to open up the click circle and also 
@@ -127,9 +145,12 @@ function selectNodeTextListener(nodeText, deleteLinksOnNodeButton,
         element.addEventListener('click', function handleClick(event) {
             event.preventDefault();
             
-            //var deleteLinksOnNode= event.target.parentElement.querySelector(".delete-links-semi-circle")
-            //var deleteNode = event.target.parentElement.querySelector(".delete-node-semi-circle")
-            //var clickHighlightNode = event.target.parentElement.querySelector(".node-click-circle")
+            //var deleteLinksOnNode= event.target.parentElement.querySelector(
+                //".delete-links-semi-circle")
+            //var deleteNode = event.target.parentElement.querySelector(
+                //".delete-node-semi-circle")
+            //var clickHighlightNode = event.target.parentElement.querySelector(
+                //".node-click-circle")
 
             if(getComputedStyle(deleteLinksOnNodeButton).display == "none") {
                 
@@ -137,11 +158,17 @@ function selectNodeTextListener(nodeText, deleteLinksOnNodeButton,
                 deleteNodeButton.style.display= "block"
                 clickHighlightNodeCircle.style.opacity = ".75"
 
-                if(shellOpenIndex >= 0 && event.target.parentElement.id != shellOpenIndex) {
+                if(shellOpenIndex >= 0 && event.target.parentElement.id != 
+                    shellOpenIndex) {
                     
-                    document.getElementById(shellOpenIndex).querySelector(".delete-links-semi-circle").style.display = "none"
-                    document.getElementById(shellOpenIndex).querySelector(".delete-node-semi-circle").style.display = "none"
-                    document.getElementById(shellOpenIndex).querySelector(".node-click-circle").style.opacity = "0"
+                    document.getElementById(shellOpenIndex).querySelector(
+                        ".delete-links-semi-circle").style.display = "none"
+
+                    document.getElementById(shellOpenIndex).querySelector(
+                        ".delete-node-semi-circle").style.display = "none"
+
+                    document.getElementById(shellOpenIndex).querySelector(
+                        ".node-click-circle").style.opacity = "0"
                     
                 } 
 
@@ -161,7 +188,8 @@ function selectNodeTextListener(nodeText, deleteLinksOnNodeButton,
          */
         element.addEventListener('mouseover', function handleClick(event) {
             event.preventDefault();
-            //var hover = event.target.parentElement.querySelector(".node-hover-circle")
+            //var hover = 
+            //event.target.parentElement.querySelector(".node-hover-circle")
             hoverHighlightNodeCircle.style.opacity = ".75"
         })
     })
@@ -171,20 +199,20 @@ function selectNodeTextListener(nodeText, deleteLinksOnNodeButton,
 
 
 /**
- * @name deleteLinksOnNodeButtonListener
+ * @name deleteLinksOnNodeCircleButtonListener
  * @description Apply event listen to the delete links button so 
  *   when user clicks on it, delete all links associated with that node.
  * @param deleteLinksOnNodeButton The option button which appears after 
  *   clicking a node which allows the user to delete links surrounding 
  *   a node. This is the same size as the number of nodes in visualization.
  */
-function deleteLinksOnNodeButtonListener(deleteLinksOnNodeButton) {
+function deleteLinksOnNodeCircleButtonListener(deleteLinksOnNodeCircleButton) {
     
     /*
     * Apply event listener to outer circle button for properly 
     * deleting links surrounding a node.
     */
-    deleteLinksOnNodeButton.forEach(element => { 
+    deleteLinksOnNodeCircleButton.forEach(element => { 
         
         element.addEventListener('click', function handleClick(event) {
             
@@ -193,8 +221,11 @@ function deleteLinksOnNodeButtonListener(deleteLinksOnNodeButton) {
             
             // Close all buttons associated with the node.
             element.style.display = "none"
-            var right = event.target.parentElement.querySelector(".delete-node-semi-circle")
-            right.style.display = "none"
+
+            var deleteNodeCircleButton = event.target.parentElement.querySelector(
+                ".delete-node-semi-circle")
+
+            deleteNodeCircleButton.style.display = "none"
 
         })
     })
@@ -204,15 +235,15 @@ function deleteLinksOnNodeButtonListener(deleteLinksOnNodeButton) {
 
 
 /**
- * @name deleteNodeButtonListener
+ * @name deleteNodeCircleButtonListener
  * @description Apply event listen to the delete node button so 
  *   when user clicks on it, delete the currently selected node 
- *   and the menu associated with the button.
+ *   and close the menu associated with the button.
  * @param deleteNodeButton The button to apply effect to.
  */
-function deleteNodeButtonListener(deleteNodeButton) {
+function deleteNodeCircleButtonListener(deleteNodeCircleButton) {
     
-    deleteNodeButton.forEach( element => { 
+    deleteNodeCircleButton.forEach( element => { 
         
         element.addEventListener('click', function handleClick(event) {
             
@@ -221,8 +252,11 @@ function deleteNodeButtonListener(deleteNodeButton) {
             
              // Close all buttons associated with the node.
             element.style.display = "none"
-            var left = event.target.parentElement.querySelector(".delete-links-semi-circle")
-            left.style.display = "none"
+
+            var deleteNodeLinksButton = event.target.parentElement.querySelector(
+                ".delete-links-semi-circle")
+
+            deleteNodeLinksButton.style.display = "none"
 
         })
     })
@@ -277,5 +311,5 @@ export {selectNodeListener,
         selectNodeTextListener,
         addClickCircleEventListener,
         addHoverCircleEventListener,
-        deleteNodeButtonListener,
-        deleteLinksOnNodeButtonListener}
+        deleteNodeCircleButtonListener,
+        deleteLinksOnNodeCircleButtonListener}

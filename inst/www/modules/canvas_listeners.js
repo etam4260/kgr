@@ -1,29 +1,10 @@
-
-var dragItem = document.querySelector(".node")
-var canvas = document.querySelector(".canvas");
-var svg_image = document.querySelector(".svg_image")
-
-// svg_image.setAttribute("width", document.documentElement.clientWidth)
-// svg_image.setAttribute("height",  document.documentElement.clientHeight * (19/20))
-
-// Is the node currently active?
-var active = false;
-
-// Current X and Y position of node being dragged.
-var currentX;
-var currentY;
-
-// Initial X and Y position of node going to be dragged.
-var initialX = new Array(num_nodes).fill(0);
+// Initial X and Y position of nodes going to be dragged.
+var initialX = new Array(numNodes).fill(0);
 var initialY =  new Array(num_nodes).fill(0);
 
-// The offset of X and Y
+// The offsets of nodes given their X and Y
 var xOffset = new Array(num_nodes).fill(0);
 var yOffset = new Array(num_nodes).fill(0);
-
-var index;
-
-
 
 /**
  * @name initializeSizeOfSVG
@@ -33,8 +14,11 @@ var index;
  */
 function initializeSizeOfSVG(svgImage) {
     
-    svgImage.setAttribute("width", document.documentElement.clientWidth)
-    svgImage.setAttribute("height",  document.documentElement.clientHeight * (19/20))
+    svgImage.setAttribute(
+        "width", document.documentElement.clientWidth)
+    
+    svgImage.setAttribute(
+        "height", document.documentElement.clientHeight * (19/20))
 
 }
 
@@ -64,32 +48,24 @@ function initializeDragOfCanvas(canvas) {
 
     canvas.addEventListener("mousemove", drag, false);
 
-
+    dragItem = null;
+    active = false;
+    index = -1;
     
-    /**
-     * @name dragEnd
-     * @description Listens to the drag ending event of picked up node.
-     * @param {event} e The event target.
-     */
-    function dragEnd(e) {
-
-        initialX[index] = currentX;
-        initialY[index] = currentY;
-
-        active = false;
-        dragItem.style.cursor = "grab"
-
-    }
+    // Current X and Y position of node being dragged.
+    var currentX;
+    var currentY;
 
 
     /**
-     * @name dragEnd 
+     * @name dragStart
      * @description Listens to the drag starting event of picked up node.
      * @param {event} e The event target.   
      */
     function dragStart(e) {
     
-        if(e.target.className.baseVal == "node" || e.target.className.baseVal == "nodetext") {
+        if(e.target.className.baseVal == "node" ||
+           e.target.className.baseVal == "nodetext") {
     
             dragItem = e.target
             active = true;
@@ -155,28 +131,67 @@ function initializeDragOfCanvas(canvas) {
         //Translate also the shell and text
 
         // Get elements of the node and make sure to tranlate them too...
-        var deleteLinksOnNodeButton = el.parentElement.querySelector(".delete-links-semi-circle")
-        var deleteLinksOnNode = el.parentElement.querySelector(".delete-node-semi-circle")
-        var nodeText = el.parentElement.querySelector(".nodetext")
-        var node = el.parentElement.querySelector(".node")
-        var edge = el.parentElement.querySelector(".edge")
-        var hoverHighlightNodeCircle =  el.parentElement.querySelector(".node-hover-circle")
-        var clickHighlightNodeCircle  = el.parentElement.querySelector(".node-click-circle")
+        var deleteLinksOnNodeButton = el.parentElement.querySelector(
+            ".delete-links-semi-circle")
+        
+        var deleteLinksOnNode = el.parentElement.querySelector(
+            ".delete-node-semi-circle")
+
+        var nodeText = el.parentElement.querySelector(
+            ".node-text")
+
+        var node = el.parentElement.querySelector(
+            ".node")
+
+        var edge = el.parentElement.querySelector(
+            ".edge")
+
+        var hoverHighlightNodeCircle =  el.parentElement.querySelector(
+            ".node-hover-circle")
+
+        var clickHighlightNodeCircle  = el.parentElement.querySelector(
+            ".node-click-circle")
 
 
-        deleteLinksOnNodeButton.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
-        deleteLinksOnNode.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";      
+        deleteLinksOnNodeButton.style.transform = 
+            "translate3d(" + xPos + "px, " + yPos + "px, 0)";
+        
+        deleteLinksOnNode.style.transform = 
+            "translate3d(" + xPos + "px, " + yPos + "px, 0)";      
         
 
-        nodeText.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
-        node.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
+        nodeText.style.transform = 
+            "translate3d(" + xPos + "px, " + yPos + "px, 0)";
+        
+        node.style.transform = 
+            "translate3d(" + xPos + "px, " + yPos + "px, 0)";
         
 
-        edge.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
+        edge.style.transform = 
+            "translate3d(" + xPos + "px, " + yPos + "px, 0)";
         
 
-        hoverHighlightNodeCircle.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
-        clickHighlightNodeCircle .style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
+        hoverHighlightNodeCircle.style.transform = 
+            "translate3d(" + xPos + "px, " + yPos + "px, 0)";
+
+        clickHighlightNodeCircle .style.transform = 
+            "translate3d(" + xPos + "px, " + yPos + "px, 0)";
+    }
+
+
+    /**
+     * @name dragEnd
+     * @description Listens to the drag ending event of picked up node.
+     * @param {event} e The event target.
+     */
+    function dragEnd(e) {
+
+        initialX[index] = currentX;
+        initialY[index] = currentY;
+
+        active = false;
+        dragItem.style.cursor = "grab"
+
     }
 }
 

@@ -1,24 +1,14 @@
-var node_editor = document.querySelector(".node_editor")
-var exit_editor = document.querySelector(".exit_editor")
-
-var editor_open = false
-node_editor.style.height = document.documentElement.clientHeight * (1/20) + "px"
-
-
-
 /**
- * @name initializeEditor
+ * @name initializeEditorSize
  * @description create editor in the document with specified size. 
  * @param document The document to add the editor to.
  * @param nodeEditorPopup The node editor popup object.
  */
-function initializeEditor(document, nodeEditorPopup) {
+function initializeEditorSize(document, nodeEditorPopup) {
     
-    //var node_editor = document.querySelector(".node_editor")
+    nodeEditorPopup.style.height = 
+        document.documentElement.clientHeight * (1/20) + "px"
     
-    nodeEditorPopup.style.height = document.documentElement.clientHeight * (1/20) + "px"
-    
-    return(document)
 }
 
 
@@ -38,10 +28,8 @@ function exitNodeEditorButtonListener(exitNodeEditorButton,
                                       svgImage,
                                       nodeEditor) {
     
-    exitNodeEditorButton.addEventListener("click", function handleClick(event) {
-    
-        //node_editor_items = node_editor.querySelectorAll(".titles")
-        
+    exitNodeEditorButton.addEventListener("click", function handleClick() {
+  
         nodeEditorTitles.forEach(element => {
             
             if (isNodeEditorOpen) {
@@ -52,8 +40,6 @@ function exitNodeEditorButtonListener(exitNodeEditorButton,
 
         });
     
-        // node_editor_items = node_editor.querySelectorAll(".entries")
-        
         nodeEditorEntries.forEach(element => {
             
             if (editor_open) {
@@ -68,21 +54,31 @@ function exitNodeEditorButtonListener(exitNodeEditorButton,
         if (isNodeEditorOpen) {
             
             exitNodeEditorButton.innerHTML = "&#8691"
-            nodeEditor.style.height = document.documentElement.clientHeight * (1/20) + "px"
-            svgImage.setAttribute("height",  document.documentElement.clientHeight * (19/20))
+
+            nodeEditor.style.height = 
+                document.documentElement.clientHeight * (1/20) + "px"
+
+            svgImage.setAttribute("height",  
+                document.documentElement.clientHeight * (19/20))
+
             isNodeEditorOpen = false
         
         } else {
         
             exitNodeEditorButton.innerHTML = "&#x2715"
-            nodeEditor.style.height = document.documentElement.clientHeight * (1/5) + "px"
-            svgImage.setAttribute("height", document.documentElement.clientHeight * (4/5))
+            
+            nodeEditor.style.height = 
+                document.documentElement.clientHeight * (1/5) + "px"
+            
+            svgImage.setAttribute("height",
+                                  document.documentElement.clientHeight * (4/5))
+            
             isNodeEditorOpen = true
         
         }
     })
 }
 
-export {initializeEditor,
+export {initializeEditorSize,
         exitNodeEditorButtonListener
        }

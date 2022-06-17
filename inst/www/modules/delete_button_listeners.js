@@ -1,5 +1,3 @@
-var delete_button = document.querySelectorAll(".delete")
-
 /**
  * @name addDeleteButtonClickEvent
  * @description Add event listener for the delete button located at the 
@@ -7,7 +5,8 @@ var delete_button = document.querySelectorAll(".delete")
  *   edge in the canvas.
  * @param deleteNodeButton The delete button to apply event listener to.
  */
-function addDeleteButtonClickEvent(deleteNodeButton, shellOpenIndex) {
+function addDeleteButtonClickEvent(deleteNodeButton,
+                                   shellOpenIndex) {
     
     deleteNodeButton.forEach(element =>  {
         

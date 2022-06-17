@@ -1,5 +1,4 @@
 /**
- * document_handler.js
  * 
  * File contains functions related to handling document related events. 
  * 
@@ -7,15 +6,16 @@
 
 
 /**
- * @name clearEffectsOnDocumentMouseover
+ * @name clearNodeHoverEffectsOnDocumentMouseoverListener
  * @description When user is hovering over the main document
  *   make sure the hovering effect on each node is 
  *   effectively removed.
  * @param document The document to apply effects
  * @param hoverHighlightNodeCircle The hover circle objects to hide.
  */
-function clearEffectsOnDocumentMouseoverListener(document,
-                                                 hoverHighlightNodeCircle) {
+function clearNodeHoverEffectsOnDocumentMouseoverListener(
+    document,
+    hoverHighlightNodeCircle) {
     
     
     document.addEventListener("mouseover", function handle(event) {
@@ -39,21 +39,23 @@ function clearEffectsOnDocumentMouseoverListener(document,
 
 
 /**
- * @name addHoverEffectForAddAndDelete
+ * @name addButtonHoverEffectForAddAndDeleteNodeButtons
  * @description When user is hovering over the delete and add buttons
  *   on the screen, make sure apply an effect.
  * @param document The document to apply effects.
  * @param addNodeButton The addNodeButton located at the top of the canvas.
  * @param deleteButton The deleteButton located at the top of the canvas.
  */
-function addHoverEffectForAddAndDelete(document, addNodeButton, deleteButton) {
+function addButtonHoverEffectForAddAndDeleteNodeButtons(document,
+                                                        addNodeButton,
+                                                        deleteButton) {
 
     document.addEventListener("mouseover", function handle(event) {
             
         // If mousing over the delete button or delete image, make sure to 
         // apply a hover effect.
-        if (event.target.className.baseVal == "add_node" ||
-            event.target.className.baseVal == "add_node_text") {
+        if (event.target.className.baseVal == "add-node" ||
+            event.target.className.baseVal == "add-node-text") {
             
             addNodeButton.style.fill = "#d6d6d6"
 
@@ -70,5 +72,5 @@ function addHoverEffectForAddAndDelete(document, addNodeButton, deleteButton) {
     })
 }
 
-export {clearEffectsOnDocumentMouseoverListener,
-        addHoverEffectForAddAndDelete}
+export {clearNodeHoverEffectsOnDocumentMouseoverListener,
+        addButtonHoverEffectForAddAndDeleteNodeButtons}

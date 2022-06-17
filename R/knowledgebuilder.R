@@ -66,14 +66,23 @@ kg_builder <- function() {
                    )
   )
 
+
   # need to make sure this is path to the kgr files.
   file.copy(from = app_path , to = dir, recursive = TRUE)
   system(paste("cp -R", app_path, dir, sep = " "))
 
+  web_app <- startServer("127.0.0.1", 8100,
+                   app = list(
+                     staticPaths = list("/"= paste(dir, "/www", sep = ""))
+                   )
+  )
+
   # move entire application to temp folder and open it in the view. This will
   # start the server client interactions.
-  rstudioapi::viewer(paste(dir, "/www/canvas.html", sep = ""))
+
+  rstudioapi::viewer("http://localhost:8100")
 
   # Make sure that when this function is exited
-  on.exit(httpuv::stopServer(s), add = TRUE)
+  # on.exit(httpuv::stopServer(s), add = TRUE)
+  # on.exit(httpuv::stopServer(web_app), add = TRUE)
 }

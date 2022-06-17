@@ -1,22 +1,20 @@
 import * as node_listeners from './node_listeners.js'
 
-var add_node = document.querySelector(".add_node")
-var add_node_text = document.querySelector(".add_node_text")
-
-
 /**
  * @name addNewNodeListener
  * @description When user clicks the add node button, make sure 
  *   to append a new node to the document alongside with its 
  *   associated components.
- * @param addNode The add button to apply effects to.
+ * @param addNodeButton The add button to apply effects to.
  * @param svgImage The svg object where the add node.
  * @param numNodes The current number of nodes on the canvas.
  *   button is located.
  */
-function addNewNodeListener(addNode, svgImage, numNodes) {
+function addNewNodeButtonListener(addNodeButton,
+                                  svgImage,
+                                  numNodes) {
     
-    addNode.addEventListener("click", function handleClick(event) {
+    addNodeButton.addEventListener("click", function handleClick() {
         
         // Make new node ...
         
@@ -47,17 +45,29 @@ function addNewNodeListener(addNode, svgImage, numNodes) {
     
         numNodes += 1
     
-        node_listeners.selectNodeListener(svgImage.getElementById(numNodes - 1).querySelector(".node"))
+        node_listeners.selectNodeListener(
+            svgImage.getElementById(numNodes - 1).querySelector(
+                ".node"))
         
-        node_listeners.selectNodeTextListener(svgImage.getElementById(numNodes - 1).querySelector(".nodetext"))
+        node_listeners.selectNodeTextListener(
+            svgImage.getElementById(numNodes - 1).querySelector(
+                ".nodetext"))
         
-        node_listeners.deleteLinksOnNodeButtonListener(svgImage.getElementById(numNodes - 1).querySelector("delete-node-semi-circle"))
+        node_listeners.deleteLinksOnNodeButtonListener(
+            svgImage.getElementById(numNodes - 1).querySelector(
+                "delete-node-semi-circle"))
 
-        node_listeners.deleteNodeButtonListener(svgImage.getElementById(numNodes - 1).querySelector(".delete-links-semi-circle"))
+        node_listeners.deleteNodeButtonListener(
+            svgImage.getElementById(numNodes - 1).querySelector(
+                ".delete-links-semi-circle"))
 
-        node_listeners.addHoverCircleEventListener(svgImage.getElementById(numNodes - 1).querySelector(".node-hover-circle"))
+        node_listeners.addHoverCircleEventListener(
+            svgImage.getElementById(numNodes - 1).querySelector(
+                ".node-hover-circle"))
 
-        node_listeners.addClickCircleEventListener(svgImage.getElementById(numNodes - 1).querySelector(".node-click-circle"))
+        node_listeners.addClickCircleEventListener(
+            svgImage.getElementById(numNodes - 1).querySelector(
+                ".node-click-circle"))
 
     })
 
@@ -70,17 +80,16 @@ function addNewNodeListener(addNode, svgImage, numNodes) {
  * @description When user clicks the add node button text,
  *   make sure to append a new node to the document alongside
  *   with its associated components.
- * @param addNodeText The text in the add node to apply listener to.
+ * @param addNodeButtonText The text in the add button to apply listener to.
  * @param svgImage The svg object where the add node button is located.
  * @param numNodes The current number of nodes on the canvas.
  *   button is located.
  */
-function addNewNodeTextListener(addNodeText, svgImage, numNodes) {
+function addNewNodeTextButtonListener(addNodeButtonText,
+                                      svgImage,
+                                      numNodes) {
 
-    addNodeText.addEventListener("click", function handleClick(event) {
-        
-        // Make new node ...
-        //var node_screen = document.querySelector(".svg_image")
+    addNodeButtonText.addEventListener("click", function handleClick() {
         
         initialX.push(0)
         initialY.push(0)
@@ -107,10 +116,12 @@ function addNewNodeTextListener(addNodeText, svgImage, numNodes) {
         
         svgImage.insertAdjacentHTML("afterbegin", newNode)
 
-        num_nodes += 1
+        numNodes += 1
     })
+
+    return(numNodes)
 }
 
 
-export {addNewNodeListener,
-        addNewNodeTextListener}
+export {addNewNodeButtonListener,
+        addNewNodeTextButtonListener}

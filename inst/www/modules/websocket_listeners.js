@@ -1,6 +1,3 @@
-
-var ws = new WebSocket("ws://localhost:8080")
-
 /**
  * @description Create a websocket connection with an application and 
  *   initialize it listeners. Websocker must be created with

@@ -2,13 +2,13 @@
  * The add button is white with grey border. 
  * Adds new nodes onto the screen
  */
-.add_node {
+.add-node-button {
     fill:rgb(255, 255, 255);
     stroke: rgb(209, 209, 209) ;
     stroke-width: 1;
     cursor: pointer;
 }
 
-.add_node_text {
+.add-node-button-text {
     cursor: pointer;
 }
